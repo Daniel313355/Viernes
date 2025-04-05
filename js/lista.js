@@ -3,7 +3,11 @@ function mostrarlista(listaPokes){
     let Pokes ="";
 
     for (let i = 0; i < listaPokes.length; i++) {
-        Pokes += listaPokes[i].name
+        Pokes += `
+         <div class="   c-lista-pokemon poke-${id}" onclick="mostrarDetalle('${pokemones[i].name}')">
+             <p>#${id}</p>
+        "<p>" + listaPokes[i].name + "</p>"
     }
 
-    app.innerHTML = "lista";
+    app.innerHTML = Pokes;
+}
