@@ -10,6 +10,8 @@
 <body>
 
     <main id="app"></main>
+    <button onclick="filtro('https://api.spacexdata.com/v4/crew/:id')">ID</button>
+    <button onclick="filtro('https://api.spacexdata.com/v4/crew/:status')">Estado</button>
 
     <script>
         let pokemones = [];
@@ -20,10 +22,23 @@
             const data = await res.json()
             pokemones = data;
             //mostrarLista(pokemones)
-            console.log(pokemones)
-}
+            console.log(data.length)
 
-conexionLista()
+            for (var i=0; i < data.length; i++){
+                console.log(pokemones[i].name)
+                document.getElementById("app").innerHTML += "<p>" + [i] + " " + pokemones[i].name + " " + pokemones[i].agency + "</p>"
+            }
+}
+async function  filtro(unTipo) {
+    try{
+            const respuesta = await fetch(unTipo);
+            const datos = await respuesta.json();
+
+            const pokemonesFiltrados = datos;
+            console.log(pokemonesFiltrados)
+    }catch (error){
+        console.error("Error al filtrar por tipo:", error);
+            document.getElementById("app").innerHTML = `<p>Error al cargar Pokémon de tipo "${untipo}".</p>`;
     </script>
     
 </body>
